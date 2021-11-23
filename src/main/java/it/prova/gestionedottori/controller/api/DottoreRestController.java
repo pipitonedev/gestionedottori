@@ -55,10 +55,14 @@ public class DottoreRestController {
 		dottoreService.delete(dottoreService.get(id));
 	}
 	
-	@GetMapping("verifica/{codiceDipendente}")
+	@GetMapping("/verifica/{codiceDipendente}")
 	public DottoreDTO verificaDipendente(@PathVariable(required = true) String codiceDipendente) {
-		
 		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.cercaPerCodiceDipendente(codiceDipendente));
+	}
+	
+	@PostMapping("/impostaInVisita")
+	public DottoreDTO imposta(@RequestBody String codiceDipendente) {
+		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.impostaInVisita(codiceDipendente));
 	}
 
 }
