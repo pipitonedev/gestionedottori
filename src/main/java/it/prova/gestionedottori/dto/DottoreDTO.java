@@ -1,15 +1,9 @@
-package it.prova.gestionedottori.model;
+package it.prova.gestionedottori.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import it.prova.gestionedottori.model.Dottore;
 
-@Entity
-public class Dottore {
+public class DottoreDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String cognome;
@@ -17,19 +11,10 @@ public class Dottore {
 	private boolean inServizio;
 	private boolean inVisita;
 
-	public Dottore() {
+	public DottoreDTO() {
 	}
 
-	public Dottore(String nome, String cognome, String codiceDipendente, boolean inServizio, boolean inVisita) {
-		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.codiceDipendente = codiceDipendente;
-		this.inServizio = inServizio;
-		this.inVisita = inVisita;
-	}
-
-	public Dottore(Long id, String nome, String cognome, String codiceDipendente, boolean inServizio,
+	public DottoreDTO(Long id, String nome, String cognome, String codiceDipendente, boolean inServizio,
 			boolean inVisita) {
 		super();
 		this.id = id;
@@ -88,10 +73,13 @@ public class Dottore {
 		this.inVisita = inVisita;
 	}
 
-	@Override
-	public String toString() {
-		return "Dottore [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", codiceDipendente="
-				+ codiceDipendente + ", inServizio=" + inServizio + ", inVisita=" + inVisita + "]";
+	public Dottore buildDottoreModel() {
+		return new Dottore(this.id, this.nome, this.cognome, this.codiceDipendente, this.inServizio, this.inVisita);
+	}
+
+	public static DottoreDTO buildDottoreDTOFromModel(Dottore input) {
+		return new DottoreDTO(input.getId(), input.getNome(), input.getCognome(), input.getCodiceDipendente(),
+				input.isInServizio(), input.isInVisita());
 	}
 
 }
