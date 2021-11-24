@@ -23,7 +23,7 @@ public class DottoreServiceImpl implements DottoreService {
 
 	@Override
 	public Page<Dottore> searchAndPaginate(Dottore dottoreExample, Integer pageNo, Integer pageSize, String sortBy) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
